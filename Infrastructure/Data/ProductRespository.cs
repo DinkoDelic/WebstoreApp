@@ -13,7 +13,6 @@ namespace Infrastructure.Data
         public ProductRespository(StoreContext context)
         {
             _context = context;
-
         }
 
 
