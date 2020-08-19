@@ -15,6 +15,10 @@ using Microsoft.Extensions.Logging;
 using Core.Interfaces;
 using AutoMapper;
 using API.Helpers;
+using API.Middleware;
+using API.Errors;
+using Microsoft.OpenApi.Models;
+using API.Extensions;
 
 namespace API
 {
@@ -31,23 +35,28 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<IProductRepository, ProductRespository>();
-            services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
+           
             services.AddAutoMapper(typeof(MappingProfiles));
             services.AddControllers();
             services.AddDbContext<StoreContext>(x =>
             {
                 x.UseSqlite(_config.GetConnectionString("DefaultConnection"));
             });
+
+            // Helper classes we created to store some of the additional services
+            services.AddAplicationServices();
+            services.AddSwaggerDocumentation();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            // Custom exception handling 
+            app.UseMiddleware<ExceptionMiddleware>();
+
+            // Incoming requests that don't match any of API routes are redirected here, 0 is placeholder
+            app.UseStatusCodePagesWithReExecute("/errors/{0}");
 
             app.UseHttpsRedirection();
 
@@ -56,6 +65,8 @@ namespace API
             app.UseStaticFiles();
 
             app.UseAuthorization();
+
+            app.UseSwaggerDocumentation();
 
             app.UseEndpoints(endpoints =>
             {
