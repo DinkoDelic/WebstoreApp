@@ -1,0 +1,86 @@
+<div class="container mt-3">
+  <div class="row">
+    <section class="col col-lg-3 col-sm-12">
+      <h5 class="text-warning" style="margin-bottom: 20px 0;">Sort</h5>
+      <select class="custom-select">
+        <option (click)="onPriceSortSelected(null)" selected
+          >Alphabetical</option
+        >
+        <option (click)="onPriceSortSelected('priceAsc')"
+          >Price: Low to High</option
+        >
+        <option (click)="onPriceSortSelected('priceDesc')"
+          >Price: High to Low</option
+        >
+      </select>
+      <h5 class="text-warning" style="margin: 20px 0;">Brands</h5>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let brand of brands"
+          [class.active]="brand.id === this.shopParams.brandId"
+          [value]="brand.id"
+          (click)="onBrandSelected(brand.id)"
+        >
+          {{ brand.name }}
+        </li>
+      </ul>
+
+      <h5 class="text-warning" style="margin: 20px 0;">Types</h5>
+      <ul class="list-group">
+        <li
+          class="list-group-item"
+          *ngFor="let type of types"
+          [class.active]="type.id === this.shopParams.typeId"
+          [value]="type.id"
+          (click)="onTypeSelected(type.id)"
+        >
+          {{ type.name }}
+        </li>
+      </ul>
+    </section>
+
+    <section class="col col-lg-9 col-sm-12">
+      <header style="margin: 8px 0;">
+        <span *ngIf="this.totalCount && this.totalCount > 0"
+          >Showing <strong>
+          {{(this.shopParams.pageNumber-1) * this.shopParams.pageSize + 1}} -
+          {{this.shopParams.pageNumber * this.shopParams.pageSize
+            > this.totalCount
+            ? this.totalCount
+            : this.shopParams.pageNumber * this.shopParams.pageSize
+          }}  
+          </strong> of
+          <strong>{{ this.totalCount }}</strong> Results</span
+          
+        >
+        <span *ngIf="this.totalCount === 0">
+          There are <strong>0 </strong> results
+        </span>
+      </header>
+      <div class="row">
+        <!-- *ng means angular directive which will change the DOM in some way -->
+        <div
+          class="col col-lg-4 col-md-6 col-sm-12"
+          *ngFor="let product of products"
+        >
+          <app-product-item [product]="product"></app-product-item>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center pt-3">
+        <pagination
+          *ngIf="this.totalCount > this.shopParams.pageSize"
+          (pageChanged)="pageChanged($event)"
+          [itemsPerPage]="shopParams.pageSize"
+          [boundaryLinks]="true"
+          [totalItems]="this.totalCount"
+          previousText="&lsaquo;"
+          nextText="&rsaquo;"
+          firstText="&laquo;"
+          lastText="&raquo;"
+        >
+        </pagination>
+      </div>
+    </section>
+  </div>
+</div>

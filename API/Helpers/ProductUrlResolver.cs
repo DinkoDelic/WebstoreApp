@@ -12,7 +12,7 @@ namespace API.Helpers
         {
             _config = config;
         }
-
+        // Getting proper address of picture url
         public string Resolve(Product source, ProductToReturnDto destination, string destMember, ResolutionContext context)
         {
             if (!string.IsNullOrEmpty(source.PictureUrl))

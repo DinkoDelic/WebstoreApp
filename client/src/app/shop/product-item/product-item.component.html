@@ -1,0 +1,36 @@
+<div class="card mb-4 h-100 shadow-sm">
+  <img
+    src="{{ product.pictureUrl }}"
+    alt="{{ product.name }}"
+    
+    style="max-height: 260px; max-width: 300px;"
+  />
+  <div class="card-body product-card d-flex flex-column">
+    <a href="#">
+      <h4 class="text-uppercase" style="font-size: 1rem;">{{ product.name }}</h4>
+    </a>
+
+    <div class="row button-row">
+      <div class="col-6 upper-buttons">
+        <span class="mb-2">{{ product.price | currency }}</span>
+      </div>
+      <div class="col-6 right-buttons upper-buttons">
+        <small class="text-muted">9 mins</small>
+      </div>
+      <div class="col-6">
+        <button
+          type="button"
+          class="btn btn-lg btn-outline-secondary"
+          style="min-width: 90px;"
+        >
+          <i class="fa fa-shopping-cart fa-1x"></i>
+        </button>
+      </div>
+      <div class="col-6 right-buttons">
+        <button type="button" class="btn btn-lg btn-outline-secondary">
+          View
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
