@@ -1,0 +1,21 @@
+<div *ngIf="product" class="container">
+    <div class="row mt-5">
+        <div class="col col-lg-6 col-sm-12 image-col">
+            <img class="d-flex w-100" src="{{product.pictureUrl}}" alt="Item image">
+        </div>
+        <div class="col col-lg-6 col-sm-12 info-col">
+            <h3 class="item-name">{{product.name}}</h3>
+            <p class="price">{{product.price | currency}}</p>
+            <div class="purchase-section">
+                <i class="fa fa-minus-circle text-warning fa-2x"></i>
+                <span class="amount">2</span>
+                <i class="fa fa-plus-circle text-warning fa-2x"></i>
+                <button class="btn btn-outline-secondary btn-lg purchase-btn">Add to cart</button>
+            </div>
+            <div class="description">
+                <h4 class="description-header">Description</h4>
+                <p class="desc-text">{{product.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

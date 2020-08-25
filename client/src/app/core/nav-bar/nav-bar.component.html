@@ -5,17 +5,19 @@
   <div class="row p-2" style="text-align: center;">
     <div class="col col-lg-4 col-sm-6" style="padding-top: 1.5rem;">
       <img
-        class="mb-md-3"
+        class="mb-md-3 logo"
         src="../../assets/images/logo.png"
+        routerLink ="/"
         style="max-height: 70px;"
-        alt=""
+        alt="Company logo"
       />
     </div>
     <div class="col col-lg-4 col-sm-6" style="padding-top: 2.2rem;">
       <nav>
-        <a class="p-2 text-dark" href="#">HOME</a>
-        <a class="p-2 text-dark" href="#">SHOP</a>
-        <a class="p-2 text-dark" href="#">CONTACT</a> 
+        <!-- router active options prevent home from being active all the time cause it's path is "/" -->
+        <a class="p-2" [routerLink]="['/']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >HOME</a>
+        <a class="p-2" [routerLink]="['/shop']" routerLinkActive="active">SHOP</a>
+        <a class="p-2" [routerLink]="['/contact']" routerLinkActive="active" >CONTACT</a> 
       </nav>
     </div>
     <div class="col col-lg-4 col-sm-12 col-xs-12" style="padding-top: 2rem; margin-bottom: 2rem;">

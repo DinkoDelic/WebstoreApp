@@ -2,11 +2,11 @@
   <img
     src="{{ product.pictureUrl }}"
     alt="{{ product.name }}"
+    class="d-fluid w-100"
     
-    style="max-height: 260px; max-width: 300px;"
   />
   <div class="card-body product-card d-flex flex-column">
-    <a href="#">
+    <a routerLink="/shop/{{product.id}}">
       <h4 class="text-uppercase" style="font-size: 1rem;">{{ product.name }}</h4>
     </a>
 
@@ -27,7 +27,7 @@
         </button>
       </div>
       <div class="col-6 right-buttons">
-        <button type="button" class="btn btn-lg btn-outline-secondary">
+        <button type="button" class="btn btn-lg btn-outline-secondary" routerLink="/shop/{{product.id}}" >
           View
         </button>
       </div>
