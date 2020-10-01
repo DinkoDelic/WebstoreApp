@@ -1,50 +1,68 @@
 <div class="container mt-3">
   <div class="row">
     <section class="col col-lg-3 col-md-3 col-sm-12">
-      <h5 class="text-warning" style="margin-bottom: 20px 0;">Sort</h5>
-      <select class="custom-select">
-        <option (click)="onPriceSortSelected(null)" selected
-          >Alphabetical</option
-        >
-        <option (click)="onPriceSortSelected('priceAsc')"
-          >Price: Low to High</option
-        >
-        <option (click)="onPriceSortSelected('priceDesc')"
-          >Price: High to Low</option
-        >
-      </select>
+      <ng-container *ngIf="types && brands">
+        <h5 class="text-warning" style="margin-bottom: 20px 0">Sort</h5>
+        <select class="custom-select">
+          <option (click)="onPriceSortSelected(null)" selected>
+            Alphabetical
+          </option>
+          <option (click)="onPriceSortSelected('priceAsc')">
+            Price: Low to High
+          </option>
+          <option (click)="onPriceSortSelected('priceDesc')">
+            Price: High to Low
+          </option>
+        </select>
 
-      <h5 class="text-warning" style="margin: 20px 0;">Brands</h5>
-      <select class="custom-select">
-        <option
-          *ngFor="let brand of brands"
-          [class.active]="brand.id === this.shopParams.brandId"
-          [value]="brand.id"
-          (click)="onBrandSelected(brand.id)"
-          >{{ brand.name }}</option
-        >
-      </select>
+        <h5 class="text-warning" style="margin: 20px 0">Brands</h5>
+        <select class="custom-select">
+          <option
+            *ngFor="let brand of brands"
+            [class.active]="brand.id === this.shopParams.brandId"
+            [value]="brand.id"
+            (click)="onBrandSelected(brand.id)"
+          >
+            {{ brand.name }}
+          </option>
+        </select>
 
-      <h5 class="text-warning" style="margin: 20px 0;">Types</h5>
-      <select class="custom-select"  style="margin-bottom: 50px;">
-        <option
-          *ngFor="let type of types"
-          [class.active]="type.id === this.shopParams.typeId"
-          [value]="type.id"
-          (click)="onTypeSelected(type.id)"
-          >{{ type.name }}</option
-        >
-      </select>
+        <h5 class="text-warning" style="margin: 20px 0">Types</h5>
+        <select class="custom-select" style="margin-bottom: 50px">
+          <option
+            *ngFor="let type of types"
+            [class.active]="type.id === this.shopParams.typeId"
+            [value]="type.id"
+            (click)="onTypeSelected(type.id)"
+          >
+            {{ type.name }}
+          </option>
+        </select>
 
-      <div class="form-inline" style="margin-bottom: 20px;">
-        <input #search class="form-control mb-3" type="text" (keyup.enter)="onSearch()" placeholder="Search" style="width: 100%;">
-        <button class="btn btn-outline-primary find-btn" (click)="onSearch()">Find</button>
-        <button class="btn btn-outline-success ml-3 chancel-btn" (click)="onReset()"><i class="fa fa-times"></i></button>
-      </div>
+        <div class="form-inline" style="margin-bottom: 20px">
+          <input
+            #search
+            class="form-control mb-3"
+            type="text"
+            (keyup.enter)="onSearch()"
+            placeholder="Search"
+            style="width: 100%"
+          />
+          <button class="btn btn-outline-primary find-btn" (click)="onSearch()">
+            Find
+          </button>
+          <button
+            class="btn btn-outline-success ml-3 chancel-btn"
+            (click)="onReset()"
+          >
+            <i class="fa fa-times"></i>
+          </button>
+        </div>
+      </ng-container>
     </section>
 
     <section class="col col-lg-9 col-md-9 col-sm-12">
-      <header style="margin: 8px 0;">
+      <header style="margin: 8px 0">
         <span *ngIf="this.totalCount && this.totalCount > 0"
           >Showing
           <strong>
@@ -67,10 +85,7 @@
       </header>
       <div class="row">
         <!-- *ng means angular directive which will change the DOM in some way -->
-        <div
-          class="col-12 col-md-6 col-lg-4"
-          *ngFor="let product of products"
-        >
+        <div class="col-12 col-md-6 col-lg-4" *ngFor="let product of products">
           <app-product-item [product]="product"></app-product-item>
         </div>
       </div>

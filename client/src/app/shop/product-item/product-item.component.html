@@ -1,13 +1,33 @@
-<div class="card mb-4 h-100 shadow-sm">
-  <img
-    src="{{ product.pictureUrl }}"
-    alt="{{ product.name }}"
-    class="d-fluid w-100"
-    
-  />
+<div class="card h-100 shadow-sm">
+  <div class="image position-relative" style="cursor: pointer;">
+    <img
+      src="{{ product.pictureUrl }}"
+      alt="{{ product.name }}"
+      class="d-fluid w-100"
+      style="background-color: skyblue"
+    />
+    <div class="d-flex align-items-center justify-content-center hover-overlay">
+      <div class="d-flex align-items-center justify-content-center btn-container">
+      <button
+        type="button"
+        class="btn btn-primary fa fa-shopping-cart mr-2"
+      ></button>
+
+      <button
+        type="button"
+        class="btn btn-primary"
+        routerLink="/shop/{{ product.id }}"
+        style="font-size:x-small"
+      >
+        View
+      </button>
+      </div>
+    </div>
+  </div>
+
   <div class="card-body product-card d-flex flex-column">
-    <a routerLink="/shop/{{product.id}}">
-      <h4 class="text-uppercase" style="font-size: 1rem;">{{ product.name }}</h4>
+    <a routerLink="/shop/{{ product.id }}">
+      <h4 class="text-uppercase" style="font-size: 1rem">{{ product.name }}</h4>
     </a>
 
     <div class="row button-row">
@@ -16,20 +36,6 @@
       </div>
       <div class="col-6 right-buttons upper-buttons">
         <small class="text-muted">9 mins</small>
-      </div>
-      <div class="col-6">
-        <button
-          type="button"
-          class="btn btn-lg btn-outline-secondary"
-          style="min-width: 90px;"
-        >
-          <i class="fa fa-shopping-cart fa-1x"></i>
-        </button>
-      </div>
-      <div class="col-6 right-buttons">
-        <button type="button" class="btn btn-lg btn-outline-secondary" routerLink="/shop/{{product.id}}" >
-          View
-        </button>
       </div>
     </div>
   </div>
