@@ -14,6 +14,7 @@ namespace API.Helpers
         public static IServiceCollection AddAplicationServices(this IServiceCollection services)
         {
             services.AddScoped<IProductRepository, ProductRespository>();
+            services.AddScoped<IBasketRepository, BasketRepository>();
             services.AddScoped(typeof(IGenericRepository<>), (typeof(GenericRepository<>)));
 
             // Ordering usually not important here but for this service it is!
