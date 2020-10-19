@@ -7,10 +7,10 @@
             <h3 class="item-name">{{product.name}}</h3>
             <p class="price">{{product.price | currency}}</p>
             <div class="purchase-section">
-                <i class="fa fa-minus-circle text-warning fa-2x"></i>
-                <span class="amount">2</span>
-                <i class="fa fa-plus-circle text-warning fa-2x"></i>
-                <button class="btn btn-outline-secondary btn-lg purchase-btn">Add to cart</button>
+                <i (click)="decrementQuantity()" class="fa fa-minus-circle text-warning fa-2x"></i>
+                <span class="amount">{{quantity}}</span>
+                <i (click)="incrementQuantity()" class="fa fa-plus-circle text-warning fa-2x"></i>
+                <button (click)="addItemToBasket()" class="btn btn-outline-secondary btn-lg purchase-btn">Add to cart</button>
             </div>
             <div class="description">
                 <h4 class="description-header">Description</h4>
